@@ -1,26 +1,26 @@
-import styles from '../styles/conversationList.module.css'
-import { useEffect, useState } from 'react'
-import Image from 'next/image'
-import friends from '../assets/icons/friends.svg'
-import nitro from '../assets/icons/nitro.svg'
-import DmCard from './DmCard'
+import styles from "../styles/conversationList.module.css";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import friends from "../assets/icons/friends.svg";
+import nitro from "../assets/icons/nitro.svg";
+import DmCard from "./DmCard";
 
 const ConversationList = () => {
-  const [dms, setDms] = useState([])
+  const [dms, setDms] = useState([]);
 
   useEffect(async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getdms`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getdms`);
 
-      setDms(await response.json())
+      setDms(await response.json());
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }, [])
+  }, []);
   return (
     <div className={styles.conversations}>
       <div className={styles.conversationListTop}>
-        <input type='search' placeholder='Find or start a conversation' />
+        <input type="search" placeholder="Find or start a conversation" />
       </div>
       <div className={styles.conversationsContainer}>
         <div className={styles.elementsContainer}>
@@ -30,7 +30,7 @@ const ConversationList = () => {
               width={25}
               src={friends}
               className={styles.svg}
-              alt='friends'
+              alt="friends"
             />
           </div>
           <p>Fiends</p>
@@ -42,7 +42,7 @@ const ConversationList = () => {
               width={25}
               src={nitro}
               className={styles.svg}
-              alt='nitro'
+              alt="nitro"
             />
           </div>
           <p>Nitro</p>
@@ -55,14 +55,14 @@ const ConversationList = () => {
             id={dm.id}
             avatar={
               dm.avatar ||
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3OCSMFIW5fZ3vSN6yGpD-w-6SsL2_ZPA_sw&usqp=CAU'
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3OCSMFIW5fZ3vSN6yGpD-w-6SsL2_ZPA_sw&usqp=CAU"
             }
-            status='online'
+            status="online"
           />
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ConversationList
+export default ConversationList;
